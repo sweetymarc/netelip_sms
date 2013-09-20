@@ -8,6 +8,13 @@ describe NetelipSms do
     NetelipSms.send_sms(:login => "foo", :password => "bar", :destination => "0034666666666", :message => "Lore ipsum", :from => "12345").should == true
   end
 
+  it "should return response code when message was not sent (code != 200)" do
+    response = Object.new
+    response.stub!(:code).and_return("401")
+    Net::HTTP.should_receive(:post_form).with(NetelipSms::APIUri, anything).and_return(response)
+    NetelipSms.send_sms(:login => "foo", :password => "bar", :destination => "0034666666666", :message => "Lore ipsum", :from => "12345").should == "401"
+  end
+
   it "should raise an ArgumentError if no login present" do
     proc { NetelipSms.send_sms(:password => "bar", :destination => "0034666666666", :message => "Lore ipsum", :from => "12345") }.should raise_exception(ArgumentError, "Login must be present")
   end
