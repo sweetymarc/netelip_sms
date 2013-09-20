@@ -35,4 +35,17 @@ describe NetelipSms do
   it "should raise an ArgumentError if message is more than 140 characters" do
     proc { NetelipSms.send_sms(:login => "foo", :password => "bar", :destination => "0034666666666", :message => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas commodo mattis ligula vitae malesuada. Vestibulum vulputate eros et lacus condimentum suscipit. Nulla cursus orci ac mauris ullamcorper gravida. Nullam neque lacus, facilisis ac tellus eget, congue consectetur turpis. Sed fringilla, dui nec facilisis lobortis, turpis neque volutpat leo, in ultrices orci lacus vel lacus. Sed dapibus tortor sit amet leo vulputate, sit amet facilisis felis fringilla. Nunc ultricies pulvinar nisi, non iaculis nibh condimentum at. In urna ipsum, condimentum quis purus ac, mollis pharetra mi.", :from => "12345") }.should raise_exception(ArgumentError, "Message is 140 chars maximum")
   end
+
+  it "should accept login, password, sender for module configuration" do
+    # Establish NetelipSms configuration
+    NetelipSms.login = "foo"
+    NetelipSms.password = "bar"
+    NetelipSms.from = "12345"
+
+    response = Object.new
+    response.stub!(:code).and_return("200")
+    Net::HTTP.should_receive(:post_form).with(NetelipSms::APIUri, anything).and_return(response)
+
+    proc { NetelipSms.send_sms(:message => "Lorem Ipsum", :destination => "0034666666666").should == true }.should_not raise_exception(ArgumentError)
+  end
 end

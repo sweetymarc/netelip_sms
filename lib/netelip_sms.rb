@@ -6,23 +6,23 @@ module NetelipSms
   PhoneFormat = "00%c%a%n"
   APIUri = URI.parse("http://sms.netelip.com/api.php")
 
-  @@login = ""
-  @@password = ""
-  @@from = ""
-
-  def login=(username)
-    @@login = username
-  end
-
-  def password=(secret)
-    @@password = secret
-  end
-
-  def from=(sender)
-    @@from = sender
-  end
-
   class << self
+
+    @@login = ""
+    @@password = ""
+    @@from = ""
+
+    def login=(username)
+      @@login = username
+    end
+
+    def password=(secret)
+      @@password = secret
+    end
+
+    def from=(sender)
+      @@from = sender
+    end
 
     # Send a petition to Netelip SMS gateway
     # 
@@ -41,8 +41,8 @@ module NetelipSms
       password = options[:password] || @@password
       raise ArgumentError, "Password must be present" unless password and not password.blank?
 
-      from = options[:from].to_s || @@from
-      raise ArgumentError, "Sender must be present (from)" if from.blank?
+      from = options[:from] || @@from
+      raise ArgumentError, "Sender must be present (from)" unless password and not from.blank?
       raise ArgumentError, "Sender length 11 characters maximum" if (from.size > 11)
 
       raise ArgumentError, "Recipient must be a telephone number with international format" unless Phoner::Phone.valid?(options[:destination].to_s)

@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name          = 'netelip_sms'
-  s.version       = '0.1.0'
+  s.version       = '0.1.1'
   s.date          = '2013-09-20'
   s.summary       = 'Netelip send SMS HTTP gateway'
   s.description   = 'A gateway to send SMS using HTTP POST, through Netelip service, written in ruby'
