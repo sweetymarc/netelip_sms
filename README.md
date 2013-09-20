@@ -12,11 +12,11 @@ Usage
                         :destination => "0034999999999",
                         :message => "Message with 140 chars maximum")
 
-_Login_: supplied by Netelip
-_Password_: supplied by Netelip
-_From_: source SMS. Maximum 11 characters. Could be your company's name or source telephone number
-_Destination_: destination number, international format.
-_Message_: Message to send, maximum 140 characters.
+- __Login__: supplied by Netelip.
+- __Password__: supplied by Netelip.
+- __From__: source SMS. Maximum 11 characters. Could be your company's name or source telephone number.
+- __Destination__: destination number, international format.
+- __Message__: Message to send, maximum 140 characters.
 
 If message is sent correctly, it will return true. Otherwise, error code is returned.
 
@@ -24,6 +24,6 @@ More information
 ----------------
 
 For more information, check Netelip API doc at:
-http://netelip.es/downloads/manuales/netelip\_api\_sms.pdf
+http://netelip.es/downloads/manuales/netelip_api_sms.pdf
 
 - Copyright (c) 2013 Angel García Pérez
