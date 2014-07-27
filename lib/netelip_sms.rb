@@ -45,8 +45,7 @@ module NetelipSms
       raise ArgumentError, "Sender must be present (from)" unless password and not from.blank?
       raise ArgumentError, "Sender length 11 characters maximum" if (from.size > 11)
 
-      raise ArgumentError, "Recipient must be a telephone number with international format" unless Phoner::Phone.valid?(options[:destination].to_s)
-      destination = Phoner::Phone.parse(options[:destination].to_s).format(PhoneFormat)
+      destination = options[:destination]
 
       message = options[:message].to_s
       raise ArgumentError, "Message must be present" if message.blank?
