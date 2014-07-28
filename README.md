@@ -9,7 +9,7 @@ Usage
     NetelipSms.send_sms(:login => "netelip\_login",
                         :password => "netelip\_password", 
                         :from => "Max 11chars",
-                        :destination => "0034999999999",
+                        :destination => "+34999999999",
                         :message => "Message with 140 chars maximum")
 
 - __Login__: supplied by Netelip.

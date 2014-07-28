@@ -1,9 +1,9 @@
-require 'phone'
+require 'active_support'
+require 'global_phone'
 require 'net/http'
 
 module NetelipSms
 
-  PhoneFormat = "00%c%a%n"
   APIUri = URI.parse("http://sms.netelip.com/api.php")
 
   class << self
@@ -45,7 +45,8 @@ module NetelipSms
       raise ArgumentError, "Sender must be present (from)" unless password and not from.blank?
       raise ArgumentError, "Sender length 11 characters maximum" if (from.size > 11)
 
-      destination = options[:destination]
+      raise ArgumentError, "Recipient must be a telephone number with international format" unless parsed = GlobalPhone.parse(options[:destination].to_s)
+      destination = parsed.international_string.gsub("+", "00")
 
       message = options[:message].to_s
       raise ArgumentError, "Message must be present" if message.blank?
