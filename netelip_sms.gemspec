@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency('global_phone', '~>1.0.1')
   s.add_dependency('activesupport')
-  s.add_development_dependency('rake', '~> 0.8.7')
-  s.add_development_dependency('rspec', '>1.3.1')
-  s.add_development_dependency('json')
+  s.add_development_dependency('rake', '~> 10.0.0')
+  s.add_development_dependency('rspec', '~> 3.7.0')
+  s.add_development_dependency('json', '1.8.6')
 end
