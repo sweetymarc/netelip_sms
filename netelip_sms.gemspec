@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name          = 'netelip_sms'
-  s.version       = '0.3.2'
+  s.version       = '0.3.3'
   s.date          = '2018-06-20'
   s.summary       = 'Netelip send SMS HTTP gateway'
   s.description   = 'A gateway to send SMS using HTTPS POST, through Netelip service, written in ruby'
@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.has_rdoc      = false
 
   s.add_dependency 'global_phone', '~> 1.0', '>= 1.0.1'
-  s.add_dependency 'activesupport', '~> 0'
+  s.add_dependency 'activesupport'
   s.add_development_dependency 'rake', '~> 10.0', '>= 10.0.0'
   s.add_development_dependency 'rspec', '~> 3.7', '>= 3.7.0'
   s.add_development_dependency('json', '1.8.6')
